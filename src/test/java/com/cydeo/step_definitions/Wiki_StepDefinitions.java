@@ -38,8 +38,8 @@ public class Wiki_StepDefinitions {
     @Then("User sees {string} is in the main header")
     public void user_sees_is_in_the_main_header(String string) {
 
-        //Assert.assertTrue(wikiSearchPage.mainHeader.isDisplayed());
+        Assert.assertTrue(wikiSearchPage.mainHeader.isDisplayed());
 
-        Assert.assertTrue(wikiSearchPage.mainHeader.getText().equals("Steve Jobs"));
+        Assert.assertTrue(wikiSearchPage.mainHeader.getText().equals(string));
     }
 }
