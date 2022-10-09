@@ -1,9 +1,14 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.pages.DropdownsPage;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +28,27 @@ public class DataTable_StepDefinitions {
 
         Driver.getDriver().get("https://practice.cydeo.com/dropdown");
     }
-    @Then("User should see below info in month dropdown")
-    public void user_should_see_below_info_in_month_dropdown(List<String> expectedMonth) {
 
-        System.out.println("expectedMonth = " + expectedMonth);
+    DropdownsPage dropdownsPage = new DropdownsPage();
+    @Then("User should see below info in month dropdown")
+    public void user_should_see_below_info_in_month_dropdown(List<String> expectedMonths) {
+
+        //System.out.println("expectedMonths = " + expectedMonths);
+
+        Select select = new Select(dropdownsPage.monthDropdown);
+        List<WebElement> actualOptionsAsWebElement = select.getOptions();
+
+        // create a list of string and pass all of the actual web element options string into that new list
+
+        List<String> actualOptionsAsString = new ArrayList<>();
+
+
+        for (WebElement each : actualOptionsAsWebElement) {
+         actualOptionsAsString.add(each.getText());
+        }
+
+        Assert.assertEquals(expectedMonths, actualOptionsAsString);
+//Assert will check the size of the lists first. If it is matching it will  check content 1 by 1.
     }
 
 }
