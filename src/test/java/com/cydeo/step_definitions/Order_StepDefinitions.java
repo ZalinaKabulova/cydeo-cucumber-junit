@@ -4,7 +4,8 @@ import com.cydeo.pages.BasePage;
 import com.cydeo.pages.OrderPage;
 import com.cydeo.pages.ViewAllOrdersPage;
 import com.cydeo.pages.WebTableLoginPage;
-import com.cydeo.utilities.BrowserUtils;
+import com.cydeo.utilities.Driver;
+;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,7 +24,7 @@ public class Order_StepDefinitions {
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
         //Getting the page using the URL from configuration.properties
-        com.cydeo.utilities.Driver.getDriver().get(com.cydeo.utilities.ConfigurationReader.getProperty("web.table.url"));
+        Driver.getDriver().get(com.cydeo.utilities.ConfigurationReader.getProperty("web.table.url"));
 
         //Calling our login method to log in to web table app
         webTableLoginPage.login();
